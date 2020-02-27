@@ -11,13 +11,25 @@
 <% end %>
 
 <p>
-  <strong><%= @person.name %></strong> already wrote:
+  <strong>My_publications:</strong>
 </p>
 
 <table>
   <tbody>
     <ul>
-      <%= render partial: 'articles/article', collection: @person.articles %>
+      <%= render partial: 'articles/article', collection: @publications %>
+    </ul>
+  </tbody>
+</table>
+
+<p>
+  <strong>My_drafts:</strong>
+</p>
+
+<table>
+  <tbody>
+    <ul>
+      <%= render partial: 'articles/article', collection: @drafts %>
     </ul>
   </tbody>
 </table>

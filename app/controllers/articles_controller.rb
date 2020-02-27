@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_current_person_article, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.where(publication: true)
   end
 
   def show
@@ -51,6 +51,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :body, :person_id)
+      params.require(:article).permit(:title, :body, :person_id, :publication)
     end
 end

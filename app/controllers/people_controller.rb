@@ -8,6 +8,8 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @drafts = @person.articles.where(publication: false)
+    @publications = @person.articles.where(publication: true)
   end
 
   def new
