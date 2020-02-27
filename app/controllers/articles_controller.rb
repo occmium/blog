@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show]
+  before_action :authenticate_person!, except: [:show, :index]
+  before_action :set_current_person_article, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -9,14 +11,14 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = current_person.articles.build
   end
 
   def edit
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_person.articles.build(article_params)
 
     if @article.save
       redirect_to @article, notice: 'Article created.'
@@ -44,7 +46,11 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
+    def set_current_person_article
+      @article = current_person.articles.find(params[:id])
+    end
+
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :person_id)
     end
 end

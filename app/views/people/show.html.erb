@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+
+<% if @person == current_person %>
+	<%= link_to 'Edit', edit_person_path(@person) %> |
+	<%= link_to 'Change password', edit_person_registration_path %>
+<% end %>
+
+<p>
+  <strong><%= @person.name %></strong> already wrote:
+</p>
+
+<table>
+  <tbody>
+    <ul>
+      <%= render partial: 'articles/article', collection: @person.articles %>
+    </ul>
+  </tbody>
+</table>
+
+<br>
