@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show]
-  before_action :authenticate_person!, except: [:show, :index]
+  before_action :authenticate_person!, except: [:index]
   before_action :set_current_person_article, only: [:edit, :update, :destroy]
 
   def index
