@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @drafts = @person.articles.where(publication: false)
+    @drafts = @person.articles.where(publication: false) if @person == current_person
     @publications = @person.articles.where(publication: true)
   end
 

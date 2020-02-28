@@ -11,7 +11,7 @@
 <% end %>
 
 <p>
-  <strong>My_publications:</strong>
+  <strong>Publications:</strong>
 </p>
 
 <table>
@@ -22,9 +22,13 @@
   </tbody>
 </table>
 
-<p>
-  <strong>My_drafts:</strong>
-</p>
+<% if @drafts %>
+  <% if @drafts.any? %>
+    <p>
+      <strong>Drafts:</strong>
+    </p>
+  <% end %>
+<% end %>
 
 <table>
   <tbody>
