@@ -1,0 +1,8 @@
+<p>
+	<%= comment.body %> // 
+	<strong><%= comment.person.name %></strong>
+	<% if current_person_can_edit?(comment) || current_person_can_edit?(@article) %>
+	  <%= link_to('Destroy', article_comment_path(comment.article, comment),
+	              method: :delete, data: { confirm: 'Are you sure?' }) %>
+	<% end %>
+</p>

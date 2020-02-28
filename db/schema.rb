@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_101703) do
+ActiveRecord::Schema.define(version: 2020_02_28_043913) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_02_27_101703) do
     t.integer "person_id"
     t.boolean "publication", default: false
     t.index ["person_id"], name: "index_articles_on_person_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "person_id", null: false
+    t.integer "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["person_id"], name: "index_comments_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -36,4 +46,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_101703) do
   end
 
   add_foreign_key "articles", "people"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "comments", "people"
 end

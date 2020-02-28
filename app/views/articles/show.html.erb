@@ -15,6 +15,18 @@
   <%= @article.person.name %>
 </p>
 
+<% if @article.publication == true %>
+  <p>
+    <strong>Comments:</strong>
+    <%= render partial: 'comments/comment', collection: @article.comments %>
+  </p>
+
+  <p>
+    <strong>Add a comment:</strong>
+  	<%= render 'comments/form' %>
+  </p>
+<% end %>
+
 <% if current_person_can_edit?(@article) %>
   <%= link_to 'Edit', edit_article_path(@article) %>
 <% else %>

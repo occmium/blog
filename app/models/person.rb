@@ -8,6 +8,7 @@ class Person < ApplicationRecord
          :validatable
 
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :name, presence: true
