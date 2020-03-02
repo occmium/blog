@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root "articles#index"
 
   resources :articles do
-    member do
-      put "like", to: "articles#revote"
+    put "like", to: "articles#revote"
+    resources :comments, only: [:create, :destroy] do
+      put "like", to: "comments#revote"
     end
-    resources :comments, only: [:create, :destroy]
   end
   resources :people, only: [:index, :show, :edit, :update, :destroy]
 end

@@ -21,6 +21,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def revote
+    @comment = Comment.find(params[:comment_id])
+
+    unless @comment.person == current_person
+      if @comment.get_upvotes.voters.include?(current_person)
+        @comment.downvote_by current_person
+      else
+        @comment.upvote_by current_person
+      end
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
     def set_article

@@ -41,13 +41,17 @@ class ArticlesController < ApplicationController
   end
 
   def revote
-    @article = Article.find(params[:id])
-    if @article.get_upvotes.voters.include?(current_person)
-      @article.downvote_by current_person
-    else
-      @article.upvote_by current_person
+    @article = Article.find(params[:article_id])
+
+    unless @article.person == current_person
+      if @article.get_upvotes.voters.include?(current_person)
+        @article.downvote_by current_person
+      else
+        @article.upvote_by current_person
+      end
     end
-    redirect_to article_path
+
+    redirect_to article_path(@article)
   end
 
   private

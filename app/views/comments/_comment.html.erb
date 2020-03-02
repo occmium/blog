@@ -5,4 +5,9 @@
 	  <%= link_to('Destroy', article_comment_path(comment.article, comment),
 	              method: :delete, data: { confirm: 'Are you sure?' }) %>
 	<% end %>
+  <br>
+  <%= link_to article_comment_like_path(comment.article, comment), method: :put do %>
+    Like!
+    <%= comment.get_upvotes.size %>
+  <% end %>
 </p>
