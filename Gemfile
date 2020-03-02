@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
+# Acts As Votable is a Ruby Gem specifically written for Rails/ActiveRecord models.
+gem 'acts_as_votable'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -32,7 +34,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # This is a small gem which causes rails console to open pry.
+  gem 'pry-rails', :group => :development
 end
 
 group :development do

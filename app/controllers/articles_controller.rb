@@ -40,6 +40,16 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article destroyed.'
   end
 
+  def revote
+    @article = Article.find(params[:id])
+    if @article.get_upvotes.voters.include?(current_person)
+      @article.downvote_by current_person
+    else
+      @article.upvote_by current_person
+    end
+    redirect_to article_path
+  end
+
   private
 
     def set_article

@@ -13,6 +13,11 @@
 <p>
   <strong>Author:</strong>
   <%= @article.person.name %>
+  <br>
+  <%= link_to like_article_path(@article), method: :put do %>
+    Like!
+    <%= @article.get_upvotes.size %>
+  <% end %>
 </p>
 
 <% if @article.publication == true %>
