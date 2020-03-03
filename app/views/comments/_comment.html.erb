@@ -1,13 +1,21 @@
-<p>
-	<%= comment.body %> // 
-	<strong><%= comment.person.name %></strong>
-	<% if current_person_can_edit?(comment) || current_person_can_edit?(@article) %>
-	  <%= link_to('Destroy', article_comment_path(comment.article, comment),
-	              method: :delete, data: { confirm: 'Are you sure?' }) %>
-	<% end %>
-  <br>
-  <%= link_to article_comment_like_path(comment.article, comment), method: :put do %>
-    Like!
-    <%= comment.get_upvotes.size %>
+<tr>
+  <td><%= comment.body %><br>
+		<%= link_to article_comment_like_path(comment.article, comment), method: :put do %>Like!
+		<% end %>
+		<%= comment.get_upvotes.size %>
+	</td>
+  <td><%= comment.person.name %></td>
+  <td><%= time_ago_in_words(comment.created_at) %> ago.</td>
+  <% if current_person_can_edit?(comment) || current_person_can_edit?(@article) %>
+	  <td>
+	    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	                article_comment_path(comment.article, comment),
+	                :method => :delete,
+	                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	                :class => 'btn btn-xs btn-danger' %>
+	  </td>
+  <% else %>
+    <td colspan="1"></td>
   <% end %>
-</p>
+</tr>
+ 

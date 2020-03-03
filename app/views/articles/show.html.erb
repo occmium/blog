@@ -1,39 +1,57 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Article -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @article.title %></dd>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.body %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
+  <dd><%= @article.body %></dd>
 
-<p>
-  <strong>Author:</strong>
-  <%= @article.person.name %>
-  <br>
-  <%= link_to article_like_path(@article), method: :put do %>
-    Like!
-    <%= @article.get_upvotes.size %>
-  <% end %>
-</p>
+  <dt><strong><%= model_class.human_attribute_name(:person) %>:</strong></dt>
+  <dd><%= @article.person.name %></dd>
+
+  <dt>
+    <strong>
+      <%= link_to article_like_path(@article), method: :put do %>Like!
+      <% end %>
+    </strong>
+  </dt>
+  <dd><%= @article.get_upvotes.size %></dd>
+</dl>
+
+<% if current_person_can_edit?(@article) %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_article_path(@article), :class => 'btn btn-default' %>
+<% end %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+                articles_path, :class => 'btn btn-default' %>
 
 <% if @article.publication == true %>
-  <p>
-    <strong>Comments:</strong>
-    <%= render partial: 'comments/comment', collection: @article.comments %>
-  </p>
+
+  <%- model_class = Comment -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:body) %></th>
+        <th><%= model_class.human_attribute_name(:person_id) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= render partial: 'comments/comment', collection: @article.comments %>
+    </tbody>
+  </table>
 
   <p>
     <strong>Add a comment:</strong>
-  	<%= render 'comments/form' %>
+    <%= render 'comments/form' %>
   </p>
-<% end %>
-
-<% if current_person_can_edit?(@article) %>
-  <%= link_to 'Edit', edit_article_path(@article) %>
-<% else %>
-  <%= link_to 'Back', :back %>
 <% end %>

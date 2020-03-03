@@ -1,41 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @person.name %>
-</p>
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1>
+    <%=t '.title', :default => model_class.model_name.human.titleize %>
+    <%= @person.name %>
+  </h1>
+</div>
 
 <% if @person == current_person %>
-	<%= link_to 'Edit', edit_person_path(@person) %> |
-	<%= link_to 'Change password', edit_person_registration_path %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_person_path(@person), :class => 'btn btn-default' %>
+  <%= link_to 'Change password', edit_person_registration_path, :class => 'btn btn-warning' %>
 <% end %>
 
-<p>
-  <strong>Publications:</strong>
-</p>
-
-<table>
-  <tbody>
-    <ul>
-      <%= render partial: 'articles/article', collection: @publications %>
-    </ul>
-  </tbody>
-</table>
-
-<% if @drafts %>
-  <% if @drafts.any? %>
-    <p>
-      <strong>Drafts:</strong>
-    </p>
+<% if @publications %>
+  <% if @publications.any? %>
+    <h3>Publications:</h3>
   <% end %>
 <% end %>
 
-<table>
-  <tbody>
-    <ul>
-      <%= render partial: 'articles/article', collection: @drafts %>
-    </ul>
-  </tbody>
-</table>
+<%= render partial: 'articles/article', collection: @publications %><br>
 
-<br>
+<% if @drafts %>
+  <% if @drafts.any? %>
+    <h3>Drafts:</h3>
+  <% end %>
+<% end %>
+
+<%= render partial: 'articles/article', collection: @drafts %><br>

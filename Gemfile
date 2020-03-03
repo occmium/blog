@@ -25,6 +25,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # Acts As Votable is a Ruby Gem specifically written for Rails/ActiveRecord models.
 gem 'acts_as_votable'
+# Bootstrap is a toolkit from Twitter designed to kickstart development of web apps and sites.
+gem 'twitter-bootstrap-rails'
+# A gem to automate using jQuery with Rails
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
