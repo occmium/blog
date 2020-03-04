@@ -29,6 +29,12 @@ gem 'acts_as_votable'
 gem 'twitter-bootstrap-rails'
 # A gem to automate using jQuery with Rails
 gem 'jquery-rails'
+# This gem provides a simple and extremely flexible way to upload files from Ruby applications.
+gem 'carrierwave', '0.10.0'
+# A ruby wrapper for ImageMagick or GraphicsMagick command line.
+gem 'mini_magick', '4.9.0'
+# Fog is the Ruby cloud services library
+gem 'fog', '1.36.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

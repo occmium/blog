@@ -4,6 +4,7 @@
     <%=t '.title', :default => model_class.model_name.human.titleize %>
     <%= @person.name %>
   </h1>
+  <%= image_tag @person.avatar.url if @person.avatar? %>
 </div>
 
 <% if @person == current_person %>

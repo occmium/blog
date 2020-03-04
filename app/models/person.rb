@@ -11,6 +11,17 @@ class Person < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  mount_uploader :avatar, AvatarUploader
+
   validates :email, uniqueness: true
   validates :name, presence: true
+  validate :avatar_size
+
+  private
+
+    def avatar_size
+      if avatar.size > 2.megabytes
+        errors.add(:avatar, "slould be less than 2MB")
+      end
+    end
 end
