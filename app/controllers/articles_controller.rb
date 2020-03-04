@@ -1,21 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show]
   before_action :authenticate_person!, except: [:index]
-  before_action :set_current_person_article, only: [:edit, :update, :destroy]
+  before_action :set_current_person_article, only: %i[edit update destroy]
 
   def index
     @articles = Article.all.where(publication: true)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @article = current_person.articles.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @article = current_person.articles.build(article_params)
@@ -56,15 +54,15 @@ class ArticlesController < ApplicationController
 
   private
 
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def set_current_person_article
-      @article = current_person.articles.find(params[:id])
-    end
+  def set_current_person_article
+    @article = current_person.articles.find(params[:id])
+  end
 
-    def article_params
-      params.require(:article).permit(:title, :body, :person_id, :publication)
-    end
+  def article_params
+    params.require(:article).permit(:title, :body, :person_id, :publication)
+  end
 end

@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   devise_for :people
-  root "articles#index"
+  root 'articles#index'
 
   resources :articles do
-    put "like", to: "articles#revote"
-    resources :comments, only: [:create, :destroy] do
-      put "like", to: "comments#revote"
+    put 'like', to: 'articles#revote'
+    resources :comments, only: %i[create destroy] do
+      put 'like', to: 'comments#revote'
     end
   end
-  resources :people, only: [:index, :show, :edit, :update, :destroy]
+  resources :people, only: %i[index show edit update destroy]
 end

@@ -8,7 +8,9 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @drafts = @person.articles.where(publication: false) if @person == current_person
+    if @person == current_person
+      @drafts = @person.articles.where(publication: false)
+    end
     @publications = @person.articles.where(publication: true)
   end
 
@@ -26,15 +28,15 @@ class PeopleController < ApplicationController
 
   private
 
-    def set_person
-      @person = Person.find(params[:id])
-    end
+  def set_person
+    @person = Person.find(params[:id])
+  end
 
-    def set_current_person
-      @person = current_person
-    end
+  def set_current_person
+    @person = current_person
+  end
 
-    def person_params
-      params.require(:person).permit(:name, :email, :avatar, :last_name)
-    end
+  def person_params
+    params.require(:person).permit(:name, :email, :avatar, :last_name)
+  end
 end

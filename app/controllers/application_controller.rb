@@ -5,10 +5,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update,
-      keys: [:name, :password, :password_confirmation, :current_password]
-    )
+                                      keys: %i[name password password_confirmation current_password])
     devise_parameter_sanitizer.permit(:sign_up,
-      keys: [:name])
+                                      keys: [:name])
   end
 
   def current_person_can_edit?(article)

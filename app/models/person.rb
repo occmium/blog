@@ -19,9 +19,7 @@ class Person < ApplicationRecord
 
   private
 
-    def avatar_size
-      if avatar.size > 2.megabytes
-        errors.add(:avatar, "slould be less than 2MB")
-      end
-    end
+  def avatar_size
+    errors.add(:avatar, 'slould be less than 2MB') if avatar.size > 2.megabytes
+  end
 end

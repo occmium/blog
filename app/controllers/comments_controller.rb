@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :set_article, only: [:create, :destroy]
+  before_action :set_article, only: %i[create destroy]
   before_action :set_comment, only: [:destroy]
 
   def create
-    @new_comment = @article.comments.build(comment_params) if @article.publication == true
+    if @article.publication == true
+      @new_comment = @article.comments.build(comment_params)
+    end
     @new_comment.person = current_person
     if @new_comment.save
       redirect_to @article, notice: 'Comment created.'
@@ -17,7 +19,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       redirect_to @article, notice: 'Comment destroyed.'
     else
-      render text: "ERROR"
+      render text: 'ERROR'
     end
   end
 
@@ -37,15 +39,15 @@ class CommentsController < ApplicationController
 
   private
 
-    def set_article
-      @article = Article.find(params[:article_id])
-    end
+  def set_article
+    @article = Article.find(params[:article_id])
+  end
 
-    def set_comment
-      @comment = @article.comments.find(params[:id])
-    end
+  def set_comment
+    @comment = @article.comments.find(params[:id])
+  end
 
-    def comment_params
-      params.require(:comment).permit(:body)
-    end
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 end
