@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show]
   before_action :set_current_person, except: [:show]

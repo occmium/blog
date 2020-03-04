@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Person < ApplicationRecord
   acts_as_voter
   # Include default devise modules. Others available are:
