@@ -4,21 +4,27 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.label :password, "New password", :class => 'control-label col-lg-2' %><br />
+    <div class="col-lg-offset-2 col-lg-10">
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirm new password", :class => 'control-label col-lg-2' %><br />
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Change my password", :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
 
