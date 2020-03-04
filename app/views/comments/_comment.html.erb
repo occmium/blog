@@ -4,7 +4,10 @@
 		<% end %>
 		<%= comment.get_upvotes.size %>
 	</td>
-  <td><%= comment.person.name %></td>
+  <td>
+  	<%= comment.person.name %>
+  	<%= comment.person.last_name %>
+  </td>
   <td><%= time_ago_in_words(comment.created_at) %> ago.</td>
   <% if current_person_can_edit?(comment) || current_person_can_edit?(@article) %>
 	  <td>
