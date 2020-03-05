@@ -6,14 +6,14 @@ class PeopleController < ApplicationController
   before_action :authenticate_person!
 
   def index
-    @people = Person.all
+    @people = Person.all.page params[:page]
   end
 
   def show
     if @person == current_person
       @drafts = @person.articles.where(publication: false)
     end
-    @publications = @person.articles.where(publication: true)
+    @publications = @person.articles.where(publication: true).page params[:page]
   end
 
   def new

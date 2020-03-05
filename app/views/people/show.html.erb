@@ -22,6 +22,8 @@
 
 <%= render partial: 'articles/article', collection: @publications %><br>
 
+<%= paginate @publications %>
+
 <% if @drafts %>
   <% if @drafts.any? %>
     <h3>Drafts:</h3>

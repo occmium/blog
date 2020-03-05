@@ -7,6 +7,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+print "Wait a minute!\r"
+
+Person.destroy_all
+Article.destroy_all
+Comment.destroy_all
+
 30.times do |int|
   person = Person.create!(
     password: '123',
@@ -38,7 +45,9 @@ end
 
 first_person.articles.build(
   title: 'My first draft',
-  body: 'Here is the text draft . No one sees this text.',
+  body: 'Here is the text draft. No one sees this text.',
   person_id: first_person.id,
   publication: false
 ).save
+
+puts 'You have an uninhabited database with test bots!'

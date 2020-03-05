@@ -37,7 +37,8 @@ gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '4.9.0'
 # Fog is the Ruby cloud services library
 gem 'fog', '1.36.0'
-
+# A Scope & Engine based paginator for modern web app frameworks and ORMs
+gem 'kaminari'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

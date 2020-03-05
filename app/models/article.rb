@@ -2,6 +2,7 @@
 
 class Article < ApplicationRecord
   acts_as_votable
+  paginates_per 5
   belongs_to :person
   has_many :comments, dependent: :destroy
 
