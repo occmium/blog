@@ -13,20 +13,23 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20_200_304_082_533) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension 'plpgsql'
+
   create_table 'articles', force: :cascade do |t|
     t.string 'title'
     t.text 'body'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'person_id'
+    t.bigint 'person_id'
     t.boolean 'publication', default: false
     t.index ['person_id'], name: 'index_articles_on_person_id'
   end
 
   create_table 'comments', force: :cascade do |t|
     t.text 'body'
-    t.integer 'person_id', null: false
-    t.integer 'article_id', null: false
+    t.bigint 'person_id', null: false
+    t.bigint 'article_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['article_id'], name: 'index_comments_on_article_id'
@@ -50,9 +53,9 @@ ActiveRecord::Schema.define(version: 20_200_304_082_533) do
 
   create_table 'votes', force: :cascade do |t|
     t.string 'votable_type'
-    t.integer 'votable_id'
+    t.bigint 'votable_id'
     t.string 'voter_type'
-    t.integer 'voter_id'
+    t.bigint 'voter_id'
     t.boolean 'vote_flag'
     t.string 'vote_scope'
     t.integer 'vote_weight'
