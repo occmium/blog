@@ -63,7 +63,7 @@ group :development do
   # Bullet will notify you of database queries that can potentially be improved through eager loading or counter cache column.
   gem 'bullet'
   # This gem is a port of Perl's Data::Faker library that generates fake data.
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
