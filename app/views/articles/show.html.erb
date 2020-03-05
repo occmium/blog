@@ -46,7 +46,8 @@
       </tr>
     </thead>
     <tbody>
-        <%= render partial: 'comments/comment', collection: @article.comments %>
+      <%= render partial: 'comments/comment', 
+        collection: @article.comments.includes([:person]) %>
     </tbody>
   </table>
 
