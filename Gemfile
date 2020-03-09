@@ -36,7 +36,7 @@ gem 'jquery-rails'
 # This gem provides a simple and extremely flexible way to upload files from Ruby applications.
 gem 'carrierwave', '0.10.0'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
-gem 'mini_magick', '4.9.0'
+gem 'mini_magick', '4.9.4'
 # Fog is the Ruby cloud services library
 gem 'fog', '1.36.0'
 # A Scope & Engine based paginator for modern web app frameworks and ORMs
