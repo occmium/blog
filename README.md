@@ -25,6 +25,12 @@ To install you will need a library manager, object-relational database system Po
     `EDITOR=nano rails credentials:edit`
 
     You can get configuration data and instructions from https://github.com/occmium
+    
+  + migrate and fill database:
+
+    `bundle exec rails db:migrate`
+    
+    `bundle exec rails db:seed`
 
   + start the server:
 
